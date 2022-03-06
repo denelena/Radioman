@@ -44,7 +44,7 @@ public class RadioTest {
         myRadio.setCurrentVolume(1000);
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.setCurrentStation(-50);
+        myRadio.setCurrentVolume(-50);
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
     }
 
@@ -52,12 +52,12 @@ public class RadioTest {
     public void shouldStationNext() {
         Radio myRadio = new Radio();
         myRadio.setCurrentStation(8);
-        myRadio.StationNext();
+        myRadio.stationNext();
 
         int expectedStation = 9;
         assertEquals(expectedStation, myRadio.getCurrentStation());
 
-        myRadio.StationNext();
+        myRadio.stationNext();
         expectedStation = 0;
         assertEquals(expectedStation, myRadio.getCurrentStation());
     }
@@ -66,12 +66,12 @@ public class RadioTest {
     public void shouldStationPrev() {
         Radio myRadio = new Radio();
         myRadio.setCurrentStation(1);
-        myRadio.StationPrev();
+        myRadio.stationPrev();
 
         int expectedStation = 0;
         assertEquals(expectedStation, myRadio.getCurrentStation());
 
-        myRadio.StationPrev();
+        myRadio.stationPrev();
         expectedStation = 9;
         assertEquals(expectedStation, myRadio.getCurrentStation());
     }
@@ -80,12 +80,12 @@ public class RadioTest {
     public void shouldVolumeUp() {
         Radio myRadio = new Radio();
         myRadio.setCurrentVolume(99);
-        myRadio.VolumeUp();
+        myRadio.volumeUp();
 
         int expectedVolume = 100;
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.VolumeUp();
+        myRadio.volumeUp();
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
     }
 
@@ -93,14 +93,14 @@ public class RadioTest {
     public void shouldVolumeDown() {
         Radio myRadio = new Radio();
         myRadio.setCurrentVolume(2);
-        myRadio.VolumeDown();
+        myRadio.volumeDown();
 
         assertEquals(1, myRadio.getCurrentVolume());
 
-        myRadio.VolumeDown();
+        myRadio.volumeDown();
         assertEquals(0, myRadio.getCurrentVolume());
 
-        myRadio.VolumeDown();
+        myRadio.volumeDown();
         assertEquals(0, myRadio.getCurrentVolume());
     }
 
