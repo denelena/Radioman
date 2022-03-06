@@ -23,19 +23,28 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldInitAndGetStationsCount() {
+        Radio myRadio = new Radio(25);
+        assertEquals(25, myRadio.getStationsCount());
+
+        Radio myRadio2 = new Radio();
+        assertEquals(10, myRadio2.getStationsCount());
+    }
+
+    @Test
     public void shouldSetAndGetVolume() {
         Radio myRadio = new Radio();
-        int expectedVolume = 0;
+        int expectedVolume = 50;
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.setCurrentVolume(5);
-        expectedVolume = 5;
+        myRadio.setCurrentVolume(20);
+        expectedVolume = 20;
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.setCurrentVolume(10);
+        myRadio.setCurrentVolume(1000);
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.setCurrentStation(-50);
+        myRadio.setCurrentVolume(-50);
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
     }
 
@@ -43,12 +52,12 @@ public class RadioTest {
     public void shouldStationNext() {
         Radio myRadio = new Radio();
         myRadio.setCurrentStation(8);
-        myRadio.StationNext();
+        myRadio.stationNext();
 
         int expectedStation = 9;
         assertEquals(expectedStation, myRadio.getCurrentStation());
 
-        myRadio.StationNext();
+        myRadio.stationNext();
         expectedStation = 0;
         assertEquals(expectedStation, myRadio.getCurrentStation());
     }
@@ -57,12 +66,12 @@ public class RadioTest {
     public void shouldStationPrev() {
         Radio myRadio = new Radio();
         myRadio.setCurrentStation(1);
-        myRadio.StationPrev();
+        myRadio.stationPrev();
 
         int expectedStation = 0;
         assertEquals(expectedStation, myRadio.getCurrentStation());
 
-        myRadio.StationPrev();
+        myRadio.stationPrev();
         expectedStation = 9;
         assertEquals(expectedStation, myRadio.getCurrentStation());
     }
@@ -70,27 +79,29 @@ public class RadioTest {
     @Test
     public void shouldVolumeUp() {
         Radio myRadio = new Radio();
-        myRadio.setCurrentVolume(8);
-        myRadio.VolumeUp();
+        myRadio.setCurrentVolume(99);
+        myRadio.volumeUp();
 
-        int expectedVolume = 9;
+        int expectedVolume = 100;
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
 
-        myRadio.VolumeUp();
+        myRadio.volumeUp();
         assertEquals(expectedVolume, myRadio.getCurrentVolume());
     }
 
     @Test
     public void shouldVolumeDown() {
         Radio myRadio = new Radio();
-        myRadio.setCurrentVolume(1);
-        myRadio.VolumeDown();
+        myRadio.setCurrentVolume(2);
+        myRadio.volumeDown();
 
-        int expectedVolume = 0;
-        assertEquals(expectedVolume, myRadio.getCurrentVolume());
+        assertEquals(1, myRadio.getCurrentVolume());
 
-        myRadio.VolumeDown();
-        assertEquals(expectedVolume, myRadio.getCurrentVolume());
+        myRadio.volumeDown();
+        assertEquals(0, myRadio.getCurrentVolume());
+
+        myRadio.volumeDown();
+        assertEquals(0, myRadio.getCurrentVolume());
     }
 
 
